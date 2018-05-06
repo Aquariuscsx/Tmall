@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style type="text/css">
+
+    </style>
+    <script language="JavaScript">
+        window.onload = function () {
+            let cur_index = 0;
+            let imgs = ['banner01.jpg', 'banner02.jpg'];
+            let banner_ul = document.getElementById('banner');
+            create_banner(banner_ul, imgs);
+            let num = setInterval(lunbo, 1000);
+            banner_ul.onmouseover = function () {
+                //停止轮播
+                clearInterval(num);
+            };
+
+            banner_ul.onmouseout = function () {
+                num = setInterval(lunbo, 1000);
+            };
+
+            function lunbo() {
+                if (cur_index >= imgs.length - 1) {
+                    cur_index = 0;
+                } else {
+                    cur_index++;
+                }
+                let bnner_li_list = document.getElementsByTagName("li");
+                for (let i = 0; i < bnner_li_list.length; i++) {
+                    if (cur_index === i) {
+                        bnner_li_list[i].style.display = 'block'
+                    } else {
+                        bnner_li_list[i].style.display = 'none';
+                    }
+                }
+            }
+        };
+
+
+        /**
+         * 创建轮播图
+         * @param imgs
+         */
+        function create_banner(banner_ul, imgs) {
+
+
+            for (let img of imgs) {
+                let banner_img = document.createElement('img');
+                banner_img.setAttribute('src', img);
+                let li = document.createElement("li");
+                li.appendChild(banner_img);
+                banner_ul.appendChild(li);
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+<div>
+    <ul id="banner">
+
+    </ul>
+    <ul></ul>
+
+</div>
+</body>
+</html>

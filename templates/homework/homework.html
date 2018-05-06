@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css"></style>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <script src="/static/js/jquery-3.3.1.js" rel="stylesheet"></script>
+    <script rel="stylesheet" src="/static/js/unslider-min.js"></script>
+    <link rel="stylesheet" href="/static/css/unslider.css">
+    <link rel="stylesheet" href="/static/css/unslider-dots.css">
+    <script language="JavaScript">
+        $(function () {
+            $('#banner').unslider({
+                dots:true,
+                speed:1000,
+                delay:1000,
+                autoplay:true
+            }).start();
+
+        })
+
+    </script>
+    <style type="text/css">
+         #cate {
+            float: left;
+        }
+        #cate > ul {
+            width: 200px;
+            position: relative;
+            height: 800px;
+        }
+        #cate > ul > li {
+            background: gray;
+            padding: 5px;
+        }
+        #cate > ul > li:hover {
+            background: white;
+        }
+        #cate > ul > li > a {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        #cate > ul > li:hover #sub {
+            display: block;
+        }
+        #sub {
+            display: none;
+            position: absolute;
+            left: 200px;
+        }
+        #sub > ul {
+            width: 500px;
+            height: 800px;
+            position: absolute;
+        }
+        #sub > ul > li {
+            padding: 5px;
+            border-bottom: 1px solid gray;
+            float: left;
+        }
+        #sub > ul > li > a {
+            padding: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="clear">
+    <div id="cate" class="clear">
+        <ul>
+            {% for cate in cate_list %}
+                <li>
+                    <a>{{ cate.name }}</a>
+                <div id="sub">
+                    <ul class="clear">
+                        {% for cate_sub in cate.cate_sub_list %}
+                            <li><a>{{ cate_sub.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="banner">
+        <ul>
+            {% for banner in banner_list %}
+                <li><img src="{{ banner.img }}"></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+
+
+
+
+</div>
+
+</body>
+</html>
